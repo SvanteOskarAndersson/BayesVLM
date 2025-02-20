@@ -4,6 +4,7 @@ import json
 import math
 from typing import Tuple, Literal
 from dataclasses import dataclass
+from tqdm import tqdm
 
 
 def compute_hessian_analytic_InfoNCE(
@@ -244,7 +245,7 @@ def optimize_prior_precision(
 
     optimizer = torch.optim.Adam([log_lmbda], lr=lr, maximize=True)
 
-    for epoch in range(num_steps):
+    for epoch in tqdm(range(num_steps), total=num_steps, disable=not verbose):
         optimizer.zero_grad()
 
         lmbda = log_lmbda.exp()
@@ -260,9 +261,6 @@ def optimize_prior_precision(
 
         marglik.backward(retain_graph=retain_graph)
         optimizer.step()
-
-        if verbose:
-            print(f"Epoch {epoch + 1}/{num_steps}, loss: {marglik.item()}, lmbda: {lmbda.item()}", flush=True)
 
     return log_lmbda.exp()
 

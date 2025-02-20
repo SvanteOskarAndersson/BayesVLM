@@ -663,16 +663,16 @@ if __name__ == '__main__':
     torch.multiprocessing.set_sharing_strategy('file_system')
 
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model', type=str, required=True)
-    parser.add_argument('--dataset', type=str, required=True)
-    parser.add_argument('--hessian_dir', type=str, required=True)
+    parser.add_argument('--model', type=str, default='clip-base')
+    parser.add_argument('--dataset', type=str, default='homeoffice-da-clipart')
+    parser.add_argument('--hessian_dir', type=str, default='hessians/hessian_CLIP-ViT-B-32-laion2B-s34B-b79K')
 
-    parser.add_argument('--experiment_dir', type=str, required=True)
+    parser.add_argument('--experiment_dir', type=str, default='experiments/active-finetuning')
     parser.add_argument('--project_name', type=str, default='active-finetuning')
     
     # experiment parameters
-    parser.add_argument('--subset_size', type=int, required=True)
-    parser.add_argument('--hessian_scale', type=float, required=True)
+    parser.add_argument('--subset_size', type=int, default=50)
+    parser.add_argument('--hessian_scale', type=float, default=10)
 
     # precompute parameters
     parser.add_argument('--predictions_batch_size', type=int, default=256)

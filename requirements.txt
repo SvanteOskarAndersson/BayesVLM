@@ -16,3 +16,4 @@ pandas
 dask
 dask[dataframe]
 scikit-learn
+tabulate

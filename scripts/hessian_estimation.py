@@ -271,9 +271,9 @@ if __name__ == "__main__":
     parser.add_argument("--la_num_classes", type=int, default=32768)
     parser.add_argument("--la_batch_size", type=int, default=5)
     parser.add_argument("--num_workers", type=int, default=8)
-    parser.add_argument("--hessian_dir", type=str, required=True)
-    parser.add_argument("--num_files", type=int, default=None)
-    parser.add_argument("--max_datapoints", type=int, default=None)
+    parser.add_argument("--hessian_dir", type=str, default="hessians/custom-hessian-clip-base")
+    parser.add_argument("--num_files", type=int, default=60)
+    parser.add_argument("--max_datapoints", type=int, default=327680)
 
     # prior precision optimization
     parser.add_argument("--lambda_init_txt", type=float, default=400)
