@@ -4,7 +4,103 @@ Paper: [https://arxiv.org/abs/2412.06014](https://arxiv.org/abs/2412.06014)
 
 Project page: [https://aaltoml.github.io/BayesVLM/](https://aaltoml.github.io/BayesVLM/)
 
-Code will appear soon. 
+# Setup Instructions
+1. Ensure you have Python version `>= 3.11` installed.
+2. Install the required packages by running:
+   ```bash
+   `pip install -r requirements.txt
+   ```
+3. Set `DATA_BASE_DIR` in your `.env` file. You can use the structure from the `.env.example` file.
+   ```
+   DATA_BASE_DIR=/path/to/datasets
+   ```
+4. Add the project root directory to the `PYTHONPATH` environment variable.
+   ```bash
+   export PYTHONPATH=$PYTHONPATH:/path/to/project/root
+   ```
+
+# Running the Code
+To run the code for zero-shot experiments, use the following command:
+```bash
+python scripts/zeroshot.py \
+    --dataset cifar100 \
+    --model clip-base \
+    --hessian_dir hessians/hessian_CLIP-ViT-B-32-laion2B-s34B-b79K
+```
+
+To run the code for the active-learning experiments, use the following command:
+```bash
+python scripts/activelearning.py \
+    --model clip-base \
+    --dataset homeoffice-da-clipart \
+    --hessian_dir hessians/hessian_CLIP-ViT-B-32-laion2B-s34B-b79K \
+    --experiment_dir active_learning_clip_base \
+    --subset_size 50 \
+    --hessian_scale 10 
+```
+
+# Notebooks
+A notebook stepping through the zero-shot code is available in `notebooks/zeroshot.ipynb`.
+
+# Data Setup
+The data is stored in the `DATA_BASE_DIR` folder and is structured as follows:
+```bash
+DATA_BASE_DIR/
+├── cifar10/
+├── cifar100/
+├── eurosat/
+├── flowers102/
+├── food101/
+├── homeoffice/
+├── imagenet1k/
+├── imagenet_r/
+```
+Please set the `DATA_BASE_DIR` environment variable accordingly.
+
+### CIFAR-10
+The `CIFAR-10` dataset is automatically downloaded by the huggingface `datasets` library.
+
+### CIFAR-100
+The `CIFAR-100` dataset is automatically downloaded by the huggingface `datasets` library.
+
+### EuroSAT
+From https://github.com/vishaal27/SuS-X/blob/main/data/DATA.md
+- Create a folder named `eurosat/` under `DATA_BASE_DIR`.
+- Download the dataset from http://madm.dfki.de/files/sentinel/EuroSAT.zip and extract it to `DATA_BASE_DIR/eurosat/`.
+- Download `split_zhou_EuroSAT.json` from [here](https://drive.google.com/file/d/1Ip7yaCWFi0eaOFUGga0lUdVi_DDQth1o/view?usp=sharing) and put it under `DATA_BASE_DIR/eurosat`.
+
+The directory structure should look like
+```
+eurosat/
+|–– 2750/
+|–– split_zhou_EuroSAT.json
+```
+
+### Flowers102
+The `Flowers102` dataset is automatically downloaded by the `torchvision` library.
+
+### Food101
+The `Food101` dataset is automatically downloaded by the `torchvision` library.
+
+### HomeOffice
+Download the dataset from https://www.hemanthdv.org/officeHomeDataset.html and extract it to `DATA_BASE_DIR/homeoffice/`.
+
+The directory structure should look like
+```
+homeoffice/
+|–– Art/
+|–– Clipart/
+|–– Product/
+|–– Real World/
+|–– ImageInfo.csv
+|–– imagelist.txt
+```
+
+### Stanford Cars
+Follow the instructions https://github.com/pytorch/vision/issues/7545#issuecomment-1631441616 to download the dataset and extract it to `DATA_BASE_DIR/stanford_cars/`.
+
+### DTD
+The `DTD` dataset is automatically downloaded by the `torchvision` library.
 
 ## Citation
 
