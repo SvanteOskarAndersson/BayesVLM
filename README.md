@@ -1,7 +1,8 @@
 # Post-hoc Probabilistic Vision-Language Models
 
-Paper: [https://arxiv.org/abs/2412.06014](https://arxiv.org/abs/2412.06014)
+![image](pipeline.png)
 
+Paper: [https://arxiv.org/abs/2412.06014](https://arxiv.org/abs/2412.06014)\
 Project page: [https://aaltoml.github.io/BayesVLM/](https://aaltoml.github.io/BayesVLM/)
 
 # Setup Instructions
