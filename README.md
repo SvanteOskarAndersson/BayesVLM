@@ -20,6 +20,15 @@ Project page: [https://aaltoml.github.io/BayesVLM/](https://aaltoml.github.io/Ba
    ```
 
 # Running the Code
+To run the hessian estimation code, use the following command:
+```bash
+python scripts/hessian_estimation.py \
+    --model clip-base \
+    --num_files 60 \
+    --max_datapoints 327680 \
+    --hessian_dir hessians/hessian_CLIP-ViT-B-32-laion2B-s34B-b79K
+```
+
 To run the code for zero-shot experiments, use the following command:
 ```bash
 python scripts/zeroshot.py \
