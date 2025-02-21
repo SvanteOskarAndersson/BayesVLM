@@ -120,6 +120,7 @@ def main(
     hessian_dir: str,
     num_files: int = None,
     max_datapoints: int = None,
+    siglip_chunk_size_j: int = 8000,
 
     # prior precision optimization
     lambda_init_txt: float = 400,
