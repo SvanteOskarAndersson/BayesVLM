@@ -103,7 +103,7 @@ Follow the instructions https://github.com/pytorch/vision/issues/7545#issuecomme
 The `DTD` dataset is automatically downloaded by the `torchvision` library.
 
 ### Laion400M
-The `laion400M` dataset can be downloaded using the [img2dataset](https://github.com/rom1504/img2dataset) tool. The istructions for `laion400m` dataset are available [here](https://github.com/rom1504/img2dataset/blob/main/dataset_examples/laion400m.md).
+The `laion400M` dataset can be downloaded using the [img2dataset](https://github.com/rom1504/img2dataset) tool. The istructions for the `laion400m` dataset are available [here](https://github.com/rom1504/img2dataset/blob/main/dataset_examples/laion400m.md).
 Before running the `img2dataset` script, we removed all datapoints that were marked as `NSFW` in the metadata.
 
 ## Citation
