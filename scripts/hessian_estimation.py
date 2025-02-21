@@ -33,6 +33,7 @@ def kfac_ggn(
     target_embeds: torch.Tensor,
     device: str,
     likelihood: Literal["info_nce", "siglip"],
+    siglip_chunk_size_j: int = 8000,
 ) -> Tuple[torch.Tensor, torch.Tensor]:
     """
     Compute the K-FAC approximation (only for the last layer) of the GGN for the cross-entropy loss function modeling "-log p(to|from)".
@@ -89,7 +90,7 @@ def kfac_ggn(
                     y=target_embeds_class_batch,
                     logit_scale=vlm.logit_scale.data,
                     logit_bias=vlm.logit_bias.data,
-                    chunk_size_j=8000,
+                    chunk_size_j=siglip_chunk_size_j,
                 ).cpu()
             else:
                 raise ValueError(f"Invalid likelihood: {likelihood}, must be one of ['info_nce', 'siglip'].")
@@ -202,6 +203,7 @@ def main(
             target_embeds=embeddings_txt,
             device=device,
             likelihood=likelihood,
+            siglip_chunk_size_j=siglip_chunk_size_j,
         )
         torch.save(A_img, f"{hessian_dir}/A_img_analytic.pt")
         torch.save(B_img, f"{hessian_dir}/B_img_analytic.pt")
@@ -224,6 +226,7 @@ def main(
             target_embeds=embeddings_img,
             device=device,
             likelihood=likelihood,
+            siglip_chunk_size_j=siglip_chunk_size_j,
         )
         torch.save(A_txt, f"{hessian_dir}/A_txt_analytic.pt")  
         torch.save(B_txt, f"{hessian_dir}/B_txt_analytic.pt")
@@ -274,6 +277,7 @@ if __name__ == "__main__":
     parser.add_argument("--hessian_dir", type=str, default="hessians/custom-hessian-clip-base")
     parser.add_argument("--num_files", type=int, default=60)
     parser.add_argument("--max_datapoints", type=int, default=327680)
+    parser.add_argument("--siglip_chunk_size", type=int, default=8000)
 
     # prior precision optimization
     parser.add_argument("--lambda_init_txt", type=float, default=400)
@@ -296,6 +300,7 @@ if __name__ == "__main__":
         hessian_dir=args.hessian_dir,
         num_files=args.num_files,
         max_datapoints=args.max_datapoints,
+        siglip_chunk_size_j=args.siglip_chunk_size,
 
         # prior precision optimization
         lambda_init_txt=args.lambda_init_txt,
