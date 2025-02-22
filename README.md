@@ -38,6 +38,9 @@ python scripts/activelearning.py
 
 Note that each of those commands has additional arguments that allow the adjustment of the Hessian estimation and zero-shot/active learning experiments.
 
+# Hessians
+The precomputed Hessians for the models used in the paper are available in the `hessians/` folder. You can select a specific hessian by setting `--hessian_dir` in the provided scripts.
+
 # Notebooks
 A notebook stepping through the zero-shot code is available in `notebooks/zeroshot.ipynb`.
 
