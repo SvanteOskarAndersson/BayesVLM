@@ -9,7 +9,7 @@ Project page: [https://aaltoml.github.io/BayesVLM/](https://aaltoml.github.io/Ba
 1. Ensure you have Python version `>= 3.11` installed.
 2. Install the required packages by running:
    ```bash
-   `pip install -r requirements.txt
+   pip install -r requirements.txt
    ```
 3. Set `DATA_BASE_DIR` in your `.env` file. You can use the structure from the `.env.example` file.
    ```
