@@ -17,3 +17,5 @@ dask
 dask[dataframe]
 scikit-learn
 tabulate
+tqdm
+huggingface_hub

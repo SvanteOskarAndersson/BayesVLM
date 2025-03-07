@@ -56,7 +56,10 @@ DATA_BASE_DIR/
 ├── homeoffice/
 ├── imagenet1k/
 ├── imagenet_r/
+├── imagenet_val_wds/
 ├── laion400m/
+├── sun397/
+├── ucf101/
 ```
 Please set the `DATA_BASE_DIR` environment variable accordingly.
 
@@ -105,9 +108,48 @@ Follow the instructions https://github.com/pytorch/vision/issues/7545#issuecomme
 ### DTD
 The `DTD` dataset is automatically downloaded by the `torchvision` library.
 
+### Imagenet Web-Dataset (val)
+We supply the script `scripts/download_imagenet.py` to download all validation tar files for the ImageNet dataset from the Hugging Face Datasets Hub.
+After running the script, the directory structure should look like
+```
+imagenet_val_wds/
+|–– imagenet1k-validation-00.tar
+|–– imagenet1k-validation-01.tar
+|–– ...
+|–– imagenet1k-validation-63.tar
+```
+
 ### Laion400M
 The `laion400M` dataset can be downloaded using the [img2dataset](https://github.com/rom1504/img2dataset) tool. The instructions for the `laion400m` dataset are available [here](https://github.com/rom1504/img2dataset/blob/main/dataset_examples/laion400m.md).
 Before running the `img2dataset` script, we removed all data points marked as `NSFW` in the metadata.
+
+### SUN397
+- Create a folder named  `sun397/` under `./data`.
+- Download the images http://vision.princeton.edu/projects/2010/SUN/SUN397.tar.gz.
+- Download the partitions https://vision.princeton.edu/projects/2010/SUN/download/Partitions.zip.
+- Extract these files under `./data/sun397/`.
+- Download `split_zhou_SUN397.json` from this [link](https://drive.google.com/file/d/1y2RD81BYuiyvebdN-JymPfyWYcd8_MUq/view?usp=sharing) and put it under `./data/sun397`.
+
+The directory structure should look like
+```
+sun397/
+|–– SUN397/
+|–– split_zhou_SUN397.json
+|–– ... # a bunch of .txt files
+```
+
+### UCF101
+- Create a folder named `ucf101/` under `./data`.
+- Download the zip file `UCF-101-midframes.zip` from [here](https://drive.google.com/file/d/10Jqome3vtUA2keJkNanAiFpgbyC9Hc2O/view?usp=sharing) and extract it to `./data/ucf101/`. This zip file contains the extracted middle video frames.
+- Download `split_zhou_UCF101.json` from this [link](https://drive.google.com/file/d/1I0S0q91hJfsV9Gf4xDIjgDq4AqBNJb1y/view?usp=sharing) and put it under `./data/ucf101`.
+
+The directory structure should look like
+```
+ucf101/
+|–– UCF-101-midframes/
+|–– split_zhou_UCF101.json
+```
+
 
 ## Citation
 
