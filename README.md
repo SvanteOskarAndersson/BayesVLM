@@ -1,3 +1,8 @@
+This project builds on [BayesVLM](https://github.com/aaltoml/BayesVLM) by Anton Baumann et al., 
+the goal here is just to understand the code by using it on a dataset.
+
+BayesVLM is licensed under the MIT License. All original work is credited to the authors listed in the [original paper](https://arxiv.org/abs/2412.06014).
+
 # Post-hoc Probabilistic Vision-Language Models
 
 ![image](pipeline.png)
