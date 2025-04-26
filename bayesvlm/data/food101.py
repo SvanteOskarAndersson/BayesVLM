@@ -100,6 +100,7 @@ class Food101DataModule(L.LightningDataModule):
         shots_per_class: int = 10,
         use_few_shot: bool = False,
         few_shot_sample_seed: int = 42,
+
     ):
         super().__init__()
         self.batch_size = batch_size
@@ -115,13 +116,15 @@ class Food101DataModule(L.LightningDataModule):
         self.shots_per_class = shots_per_class
         self.few_shot_sample_seed = few_shot_sample_seed
 
+        self.download = False  # <-- Force to not download because i downloaded the dataset
+
     def setup(self, stage: str = None):
         if self.use_few_shot:
             self.train_ds = Food101WithLabels(
                 self.data_dir,
                 split='train',
                 transform=self.train_transform,
-                download=True,
+                download=self.download,  # <-- bc already have the dataset
                 text_prompt=self.text_prompt,
                 use_few_shot = True,
                 shots_per_class = self.shots_per_class,
@@ -133,7 +136,7 @@ class Food101DataModule(L.LightningDataModule):
                 self.data_dir,
                 split='train',
                 transform=self.train_transform,
-                download=True,
+                download=self.download,  # <-- bc already have the dataset
                 text_prompt=self.text_prompt,
                 use_few_shot = False
                 )
@@ -144,7 +147,7 @@ class Food101DataModule(L.LightningDataModule):
             self.data_dir,
             split='val',
             transform=self.test_transform,
-            download=True,
+            download=self.download,  # <-- bc already have the dataset
             text_prompt=self.text_prompt,
             use_few_shot = False,
         )
@@ -153,7 +156,7 @@ class Food101DataModule(L.LightningDataModule):
             self.data_dir,
             split='test',
             transform=self.test_transform,
-            download=True,
+            download=self.download,  # <-- bc already have the dataset
             text_prompt=self.text_prompt,
             use_few_shot = False,
         )
